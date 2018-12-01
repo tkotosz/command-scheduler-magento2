@@ -39,7 +39,7 @@ build:
 
             dependencies:
                 override:
-                    - { command: 'composer update --no-interaction --prefer-source', idle_timeout: 600 }
+                    - { command: 'composer install --no-interaction', idle_timeout: 600 }
 
     cache:
         directories: [ vendor/, bin/, ~/.composer/cache ]
