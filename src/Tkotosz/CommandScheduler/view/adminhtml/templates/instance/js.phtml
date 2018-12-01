@@ -1,0 +1,23 @@
+<script>
+require([
+    'jquery',
+    'mage/template',
+], function($, mageTemplate){
+
+setSettings = function(urlTemplate, commandElement) {
+    var url;
+
+    if (!$('#edit_form').valid()) {
+        return false;
+    }
+
+    url = mageTemplate(urlTemplate, {
+        data: {
+            'command': $('#' + commandElement).val()
+        }
+    });
+
+    setLocation(url);
+};
+});
+</script>

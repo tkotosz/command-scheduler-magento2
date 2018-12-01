@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="prototype/windows/themes/default.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Tkotosz\CommandScheduler\Block\Adminhtml\Schedule\Create\From\Container" name="command_schedule_create"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Tkotosz\CommandScheduler\Block\Adminhtml\Schedule\Create\From\Tabs" name="command_schedule_create_tabs">
+                <block class="Tkotosz\CommandScheduler\Block\Adminhtml\Schedule\Create\From\Tab\Settings" name="command_schedule_create_tab_settings"/>
+                <block class="Tkotosz\CommandScheduler\Block\Adminhtml\Schedule\Create\From\Tab\Parameters" name="command_schedule_create_tab_parameters"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">settings_section</argument>
+                    <argument name="block" xsi:type="string">command_schedule_create_tab_settings</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">parameters_section</argument>
+                    <argument name="block" xsi:type="string">command_schedule_create_tab_parameters</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" template="Tkotosz_CommandScheduler::instance/js.phtml" name="command_schedule_create_js"/>
+        </referenceContainer>
+    </body>
+</page>

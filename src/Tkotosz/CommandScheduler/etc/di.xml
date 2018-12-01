@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Tkotosz\CommandScheduler\Api\CommandScheduleRepositoryInterface" type="Tkotosz\CommandScheduler\Model\CommandScheduleRepository" />
+    <preference for="Tkotosz\CommandScheduler\Api\Data\CommandScheduleInterface" type="Tkotosz\CommandScheduler\Model\CommandSchedule" />
+    <preference for="Tkotosz\CommandScheduler\Api\Data\CommandScheduleSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="tkotosz_command_scheduler_process_next_schedule" xsi:type="object">Tkotosz\CommandScheduler\Console\Command\ProcessNextScheduleCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Tkotosz\CommandScheduler\Model\AllowedCommandsContainer">
+        <arguments>
+            <argument name="allowedCommands" xsi:type="array">
+                <item name="Cache Clean" xsi:type="string">cache:clean</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

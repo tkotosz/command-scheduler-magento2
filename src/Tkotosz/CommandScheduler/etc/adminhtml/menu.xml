@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Tkotosz_CommandScheduler::manage_schedules" title="Schedule Commands" module="Tkotosz_CommandScheduler" resource="Tkotosz_CommandScheduler::manage" action="tkotosz_commandscheduler/schedule/index" parent="Magento_Backend::system_tools" sortOrder="50"/>
+    </menu>
+</config>
