@@ -60,7 +60,11 @@ class CommandScheduleProcessor
             }
 
             if (!empty($schedule->getCommandParams())) {
-                $input = new StringInput($schedule->getCommandName() . ' ' . $schedule->getCommandParams());
+                if ($command->getApplication() !== null) {
+                    $input = new StringInput($schedule->getCommandName() . ' ' . $schedule->getCommandParams());
+                } else {
+                    $input = new StringInput($schedule->getCommandParams());
+                }
             } else {
                 $input = new ArrayInput([]);
             }
