@@ -1,6 +1,6 @@
 {
     "name": "tkotosz/command-scheduler-magento2",
-    "description": "Tkotosz - Catalog Router",
+    "description": "Command Scheduler for Magento 2",
     "type": "magento2-module",
     "repositories": {
         "magento-repo": {
