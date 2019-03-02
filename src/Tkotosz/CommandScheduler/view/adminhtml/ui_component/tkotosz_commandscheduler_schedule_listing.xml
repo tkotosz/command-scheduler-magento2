@@ -46,7 +46,7 @@
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">ID</label>
-                <sorting>asc</sorting>
+                <sorting>desc</sorting>
             </settings>
         </column>
         <column name="command_name" sortOrder="40">
