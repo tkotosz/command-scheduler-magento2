@@ -45,16 +45,22 @@ class CreateCommandScheduleRequestProcessor
         
         // add options
         foreach ($command->getDefinition()->getOptions() as $option) {
-            $paramName = '--' . $option->getName();
-            if (isset($commandParams[$paramName])) {
-                $input .= ' ' . $paramName . '=' . $commandParams[$paramName];
+            if (isset($commandParams[$option->getName()])) {
+                $input .= sprintf(
+                    ' --%s="%s"',
+                    $option->getName(),
+                    addcslashes($commandParams[$option->getName()], '"')
+                );
             }
         }
 
         // add arguments
         foreach ($command->getDefinition()->getArguments() as $argument) {
             if (isset($commandParams[$argument->getName()])) {
-                $input .= ' ' . $commandParams[$argument->getName()];
+                $input .= sprintf(
+                    ' "%s"',
+                    addcslashes($commandParams[$argument->getName()], '"')
+                );
             }
         }
 
