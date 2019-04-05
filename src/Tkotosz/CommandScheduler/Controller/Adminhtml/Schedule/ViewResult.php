@@ -2,8 +2,10 @@
 
 namespace Tkotosz\CommandScheduler\Controller\Adminhtml\Schedule;
 
-use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\App\Response\Http;
+use Magento\Framework\App\ResponseInterface;
+use Tkotosz\CommandScheduler\Api\CommandScheduleRepositoryInterface;
 use Tkotosz\CommandScheduler\Controller\Adminhtml\Schedule;
 
 class ViewResult extends Schedule
@@ -11,22 +13,19 @@ class ViewResult extends Schedule
     /**
      * Execute action based on request and return result
      *
-     * @return ResultInterface
+     * @return ResponseInterface
      */
     public function execute()
     {
-        $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $resultPage->setActiveMenu('Tkotosz_CommandScheduler::manage_schedules');
-        $resultPage->getConfig()->getTitle()->prepend(__('Scheduled Commands'));
-
-        $repo = \Magento\Framework\App\ObjectManager::getInstance()->get(\Tkotosz\CommandScheduler\Api\CommandScheduleRepositoryInterface::class);
+        /** @var Http $response */
+        $response = $this->getResponse();
+        $repo = ObjectManager::getInstance()->get(CommandScheduleRepositoryInterface::class);
 
         $thing = $repo->getById($this->getRequest()->getParam('id'));
 
-        echo $thing->getResult();
+        $response->setBody(nl2br($thing->getResult()));
 
-        die;
-
-        return $resultPage;
+        return $this->getResponse();
     }
 }
+
